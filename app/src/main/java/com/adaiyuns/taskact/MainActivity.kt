@@ -31,18 +31,12 @@ class MainActivity : AppCompatActivity() {
     private fun init(){
         val entries: MutableList<Int> = ArrayList(ITEM_COUNT)
         for (i in 0 until ITEM_COUNT) {
-//            val entry: Map.Entry<String, Int> = MaterialColor.random(this, "\\D*_500$")
-            entries.add(R.drawable.icon_item)
+            entries.add(R.drawable.planet)
         }
-        Log.i("Data","Data===>>>> "+entries.size)
-
-        //populate the adapter, that knows how to draw each item (as you would do with a ListAdapter)
         wheelView.adapter = MaterialColorAdapter(this,entries)
 
-        //a listener for receiving a callback for when the item closest to the selection angle changes
         wheelView.setOnWheelItemSelectedListener { parent, itemDrawable, position -> //get the item at this position
-//            val selectedEntry = (parent.adapter as MaterialColorAdapter).getItem(position)
-//            parent.setSelectionColor(getContrastColor(selectedEntry))
+
         }
 
         wheelView.onWheelItemClickListener =
@@ -50,27 +44,8 @@ class MainActivity : AppCompatActivity() {
                 val msg = "$position $isSelected"
                 Toast.makeText(this@MainActivity, msg, Toast.LENGTH_SHORT).show()
             }
-
-        //initialise the selection drawable with the first contrast color
-
-        //initialise the selection drawable with the first contrast color
-//        wheelView.setSelectionColor(getContrastColor(entries[0]))
-
-        /*
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //wheelView.setSelectionAngle(-wheelView.getAngleForPosition(5));
-                wheelView.setMidSelected();
-            }
-        }, 3000); */
     }
 
-    //get the materials darker contrast
-    private fun getContrastColor(entry: Map.Entry<String, Int>): Int {
-        val colorName: String = MaterialColor.getColorName(entry)
-        return MaterialColor.getContrastColor(colorName)
-    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main, menu)
         return true
